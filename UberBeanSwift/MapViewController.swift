@@ -10,25 +10,41 @@ import UIKit
 import MapKit
 import CoreLocation
 
-var locationManager = CLLocationManager()
+var userLocationManager = CLLocationManager()
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
   @IBOutlet weak var mapView: MKMapView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    locationManager.requestWhenInUseAuthorization()
+
+    userLocationManager.requestWhenInUseAuthorization()
+    userLocationManager.delegate = self
+    userLocationManager.requestLocation()
+    
     mapView.showsUserLocation = true
+    mapView.delegate = self
+  }
+  
+  //MARK: Delegate Methods: CLLocationManager
+  
+  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+  {
+    print("locationManager \(manager) didUpdateLocations: \(locations) was called.")
+    let userLocation = locations.first
     
     var location = CLLocationCoordinate2D()
-    let dummyLatitude = 47.00
-    let dummyLongitude = -90.00
-    location.latitude = dummyLatitude
-    location.longitude = dummyLongitude
+    
+    if let unwrappedLatitude = userLocation?.coordinate.latitude,
+        let unwrappedLongitude = userLocation?.coordinate.longitude
+    {
+    location.latitude = unwrappedLatitude
+    location.longitude = unwrappedLongitude
+    }
     
     var span = MKCoordinateSpan()
-    let spanDegreesVertical = 5.0
-    let spanDegreesHorizontal = 5.0
+    let spanDegreesVertical = 0.075
+    let spanDegreesHorizontal = 0.075
     span.latitudeDelta = spanDegreesHorizontal
     span.longitudeDelta = spanDegreesVertical
     
@@ -38,13 +54,14 @@ class MapViewController: UIViewController {
     
     mapView.region = region
     view.layoutSubviews()
-    
+  }
+  
+  func locationManager(_ manager: CLLocationManager, didFailWithError error: Error){
+    print("locationManager didFailWithError: \(error) was called.")
   }
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
-  
-  
 }
