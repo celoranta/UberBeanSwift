@@ -14,6 +14,7 @@
 		9574A134206ED3BE002AA434 /* UberBeanSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9574A133206ED3BE002AA434 /* UberBeanSwiftTests.swift */; };
 		9574A13F206ED3BE002AA434 /* UberBeanSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9574A13E206ED3BE002AA434 /* UberBeanSwiftUITests.swift */; };
 		9574A14D206EDCBA002AA434 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9574A14C206EDCBA002AA434 /* MapViewController.swift */; };
+		9574A14F206F00E0002AA434 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9574A14E206F00E0002AA434 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		9574A13E206ED3BE002AA434 /* UberBeanSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UberBeanSwiftUITests.swift; sourceTree = "<group>"; };
 		9574A140206ED3BE002AA434 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9574A14C206EDCBA002AA434 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		9574A14E206F00E0002AA434 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				9574A11E206ED3BE002AA434 /* AppDelegate.swift */,
 				9574A122206ED3BE002AA434 /* Main.storyboard */,
 				9574A14C206EDCBA002AA434 /* MapViewController.swift */,
+				9574A14E206F00E0002AA434 /* NetworkManager.swift */,
 				9574A125206ED3BE002AA434 /* Assets.xcassets */,
 				9574A127206ED3BE002AA434 /* LaunchScreen.storyboard */,
 				9574A12A206ED3BE002AA434 /* Info.plist */,
@@ -259,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9574A14F206F00E0002AA434 /* NetworkManager.swift in Sources */,
 				9574A14D206EDCBA002AA434 /* MapViewController.swift in Sources */,
 				9574A11F206ED3BE002AA434 /* AppDelegate.swift in Sources */,
 			);
