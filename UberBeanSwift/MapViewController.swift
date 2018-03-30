@@ -43,8 +43,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     var span = MKCoordinateSpan()
-    let spanDegreesVertical = 0.075
-    let spanDegreesHorizontal = 0.075
+    let spanDegreesVertical = 0.018
+    let spanDegreesHorizontal = 0.018
     span.latitudeDelta = spanDegreesHorizontal
     span.longitudeDelta = spanDegreesVertical
     
