@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		9574A11F206ED3BE002AA434 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9574A11E206ED3BE002AA434 /* AppDelegate.swift */; };
-		9574A121206ED3BE002AA434 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9574A120206ED3BE002AA434 /* ViewController.swift */; };
 		9574A124206ED3BE002AA434 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9574A122206ED3BE002AA434 /* Main.storyboard */; };
 		9574A126206ED3BE002AA434 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9574A125206ED3BE002AA434 /* Assets.xcassets */; };
 		9574A129206ED3BE002AA434 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9574A127206ED3BE002AA434 /* LaunchScreen.storyboard */; };
 		9574A134206ED3BE002AA434 /* UberBeanSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9574A133206ED3BE002AA434 /* UberBeanSwiftTests.swift */; };
 		9574A13F206ED3BE002AA434 /* UberBeanSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9574A13E206ED3BE002AA434 /* UberBeanSwiftUITests.swift */; };
+		9574A14D206EDCBA002AA434 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9574A14C206EDCBA002AA434 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +36,6 @@
 /* Begin PBXFileReference section */
 		9574A11B206ED3BE002AA434 /* UberBeanSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberBeanSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9574A11E206ED3BE002AA434 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9574A120206ED3BE002AA434 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9574A123206ED3BE002AA434 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9574A125206ED3BE002AA434 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9574A128206ED3BE002AA434 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +46,7 @@
 		9574A13A206ED3BE002AA434 /* UberBeanSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UberBeanSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9574A13E206ED3BE002AA434 /* UberBeanSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UberBeanSwiftUITests.swift; sourceTree = "<group>"; };
 		9574A140206ED3BE002AA434 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9574A14C206EDCBA002AA434 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,8 +98,8 @@
 			isa = PBXGroup;
 			children = (
 				9574A11E206ED3BE002AA434 /* AppDelegate.swift */,
-				9574A120206ED3BE002AA434 /* ViewController.swift */,
 				9574A122206ED3BE002AA434 /* Main.storyboard */,
+				9574A14C206EDCBA002AA434 /* MapViewController.swift */,
 				9574A125206ED3BE002AA434 /* Assets.xcassets */,
 				9574A127206ED3BE002AA434 /* LaunchScreen.storyboard */,
 				9574A12A206ED3BE002AA434 /* Info.plist */,
@@ -259,7 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9574A121206ED3BE002AA434 /* ViewController.swift in Sources */,
+				9574A14D206EDCBA002AA434 /* MapViewController.swift in Sources */,
 				9574A11F206ED3BE002AA434 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
