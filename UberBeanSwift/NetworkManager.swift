@@ -27,17 +27,15 @@ class NetworkManager: NSObject {
   //let price: String //pricing level
   //let businessType: String //'categories', in case we want to be specific on the map
   //let term: String //search term, may be useful
-
-  var originalYelpTestString: String!
   
   func someFunction()
   {
     let secondYelpTestString =
     """
-    "
-    curl
-    --header "Authorization: Bearer EwwZ3Cj7MsfHZlDn6okqQrhDCJrj-vgDO0VfKF0vqn17jZjfhBUUTOp9im89H3ze-w-RizsHF516c77T0Qynx8BIsO-WnYx" --request "GET" --url "https://api.yelp.com/v3/businesses/search?term=cafe&latitude=49.28&longitude=-123.1&radius=3000&limit=50&open_now
-    "
+    curl \
+    --header "Authorization: Bearer EwwZ3Cj7MsfHZlDn6okqQrhDCJrj-vgDO0VfKF0vqn17jZjfhBUUTOp9im89H3zv9HiXMVEdBWAf_IQxcQDm0hF_F8PUuaC0e-w-RizsHF516c77T0Qynx8BIsO-WnYx" \
+    --request "GET" \
+    --url "https://api.yelp.com/v3/businesses/search?term=cafe&latitude=49.281815&longitude=-123.108414"
     """
   }
   
