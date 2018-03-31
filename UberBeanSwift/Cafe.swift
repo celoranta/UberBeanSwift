@@ -15,7 +15,7 @@ class Cafe: NSObject {
   let businessName: String
   let coordinates: CLLocation
   let openNow: Bool!
-  let businessImage: NSURL!
+  let businessImage: NSURL?
   let yelpRating: String!
   
     
@@ -29,6 +29,9 @@ class Cafe: NSObject {
     businessName = dict[0]
     latitude = -90.00
     longitude = 47.00
+    openNow = true
+    // businessImage
+    yelpRating = "Good"
   }
   
 }
