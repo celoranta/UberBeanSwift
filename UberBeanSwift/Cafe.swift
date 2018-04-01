@@ -14,45 +14,39 @@ class Cafe: NSObject {
 
   let businessName: String
   let coordinates: CLLocationCoordinate2D
-  let openNow: Bool
-  let businessImage: NSURL
+  let businessImage: String
   let yelpRating: String
-  
-  //let price: String //pricing level
-  //let businessType: String //'categories', in case we want to be specific on the map
   
   init(fromCafeDictionary dict: NSDictionary)
   {
-    let businessArray = dict[1] as! [NSDictionary]
-//    let cafeRating = dict.type(of: init)(object: Int, forKey: "rating")
-//    "price":String
-//    "phone":String
-//    "is_closed":Bool
-//    "name":String
-//    "url":String
-//    "coordinates":[String:Double]
-//    "image_url":String
-//    "location":[String:String]
-    
     print(dict)
-    let latitude = -90.00 //dummy
-    let longitude = 47.00 //dummy
-    let wrappedLatitude = CLLocationDegrees.init(latitude)
-    let wrappedLongitude = CLLocationDegrees.init(longitude)
-    let location = CLLocationCoordinate2D.init(latitude: wrappedLatitude,
+    let JsonCoordinates = dict.value(forKey: "coordinates") as! [String:Double]
+    let JsonLatitude = JsonCoordinates["latitude"]
+    let JsonLongitiude = JsonCoordinates["longitude"]
+    let wrappedLatitude = CLLocationDegrees.init(JsonLatitude!)
+    let wrappedLongitude = CLLocationDegrees.init(JsonLongitiude!)
+    coordinates = CLLocationCoordinate2D.init(latitude: wrappedLatitude,
                                                longitude: wrappedLongitude)
-    self.businessName = "dummyDefault"
-    self.coordinates = location
-    self.openNow = true
-    self.businessImage = NSURL.fileURL(withPath: "https://fakeurl") as NSURL
-    self.yelpRating = "default"
+    businessName = dict.value(forKey: "name") as! String
+    businessImage = dict["image_url"] as! String
+    yelpRating = dict["rating"] as! String
   }
 }
 
 
-//{
-//  "total": 8228,
-//  "businesses": [
-//  {
-//  "rating": 4,
-//  "price": "$"
+//{"id": "revolver-vancouver",
+//  "name": "Revolver",
+//  "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/RNcD3LjMpA-5LXKgW0rTDA/o.jpg",
+//  "is_closed": false,
+//  "url": "https://www.yelp.com/biz/revolver-vancouver?adjust_creative=Y3_DSkfENxgUH4zPjbjH_Q&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=Y3_DSkfENxgUH4zPjbjH_Q",
+//  "review_count": 436,
+//  "categories": [{"alias": "coffee", "title": "Coffee & Tea"}],
+//  "rating": 4.5,
+//  "coordinates": {"latitude": 49.283273, "longitude": -123.1094283},
+//  "transactions": [],
+//  "price": "$$",
+//  "location": {"address1": "325 Cambie Street", "address2": "", "address3": "", "city": "Vancouver", "zip_code": "V6B 1H7", "country": "CA", "state": "BC", "display_address": ["325 Cambie Street", "Vancouver, BC V6B 1H7", "Canada"]},
+//  "phone": "+16045584444",
+//  "display_phone":
+//  "+1 604-558-4444",
+//  "distance": 170.529247664302}
