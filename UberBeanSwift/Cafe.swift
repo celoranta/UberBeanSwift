@@ -26,13 +26,12 @@ class Cafe: NSObject {
     let wrappedLatitude = CLLocationDegrees.init(JsonLatitude!)
     let wrappedLongitude = CLLocationDegrees.init(JsonLongitiude!)
     coordinates = CLLocationCoordinate2D.init(latitude: wrappedLatitude,
-                                               longitude: wrappedLongitude)
+                                             longitude: wrappedLongitude)
     businessName = dict.value(forKey: "name") as! String
     businessImage = dict["image_url"] as! String
     yelpRating = dict["rating"] as! String
   }
 }
-
 
 //{"id": "revolver-vancouver",
 //  "name": "Revolver",
