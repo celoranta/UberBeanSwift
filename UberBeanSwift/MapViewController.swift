@@ -11,13 +11,18 @@ import MapKit
 import CoreLocation
 
 var userLocationManager = CLLocationManager()
+var location: CLLocationCoordinate2D!
+var networkManager: NetworkManager!
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
   @IBOutlet weak var mapView: MKMapView!
   
+  
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    networkManager = NetworkManager()
+    
     userLocationManager.requestWhenInUseAuthorization()
     userLocationManager.delegate = self
     userLocationManager.requestLocation()
@@ -33,8 +38,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     print("locationManager \(manager) didUpdateLocations: \(locations) was called.")
     let userLocation = locations.first
     
-    var location = CLLocationCoordinate2D()
-    
+    location = CLLocationCoordinate2D()
     if let unwrappedLatitude = userLocation?.coordinate.latitude,
         let unwrappedLongitude = userLocation?.coordinate.longitude
     {
@@ -54,6 +58,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     mapView.region = region
     view.layoutSubviews()
+    networkManager.updateCafeQueryResults(location: location)
   }
   
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error){

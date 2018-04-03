@@ -7,34 +7,53 @@
 //
 
 import UIKit
+import CoreLocation
 
 class NetworkManager: NSObject {
   
-  let latitude = -90.00
-  let longitude = 47.00
+  var cafeAuRait: [Cafe] = []
+
   
-  func someFunction()
+  func updateCafeQueryResults(location: CLLocationCoordinate2D)
   {
-    let yelpAPIURLString = "https://api.yelp.com/v3/businesses/search?term=cafe&\(latitude)5&longitude=\(longitude)"
+    let latitude:Double = (Double)(location.latitude)
+    let longitude:Double = (Double)(location.longitude)
+    let yelpAPIURLString = "https://api.yelp.com/v3/businesses/search?term=cafe&latitude=\(latitude)5&longitude=\(longitude)"
     let yelpAPIURL = URL(string: yelpAPIURLString)!
-    let task = URLSession.shared.dataTask(with: yelpAPIURL) { data, response, error in
+    var request = URLRequest.init(url: yelpAPIURL)
+    request.addValue("Bearer EwwZ3Cj7MsfHZlDn6okqQrhDCJrj-vgDO0VfKF0vqn17jZjfhBUUTOp9im89H3zv9HiXMVEdBWAf_IQxcQDm0hF_F8PUuaC0e-w-RizsHF516c77T0Qynx8BIsO-WnYx", forHTTPHeaderField: "Authorization")
+    request.httpMethod = "GET"
+    
+    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
       if let error = error {
         self.handleClientError(error)
         return
       }
-      guard let httpResponse = response as? HTTPURLResponse,
-        (200...299).contains(httpResponse.statusCode) else {
-          self.handleServerError(response)
-          return
+        let data = data
+          //temporarily force unwrapping data
+       if let string = String(data: data!, encoding: .utf8)
+       {
+        print(string)
       }
-      if let mimeType = httpResponse.mimeType, mimeType == "text/html",
-        let data = data,
-        let string = String(data: data, encoding: .utf8) {
-        DispatchQueue.main.async {
-          // do stuff with returned data
-        }
+        //temporary fatal guard ... to be error handled
+      guard let jsonUnwrapped = try? JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any]
+      else{
+        fatalError()
       }
-    }
+
+      guard let dictionaryUnwrapped = try? jsonUnwrapped!["businesses"] as! [[String:Any]]
+        else{
+       //   temporary fatal guard
+          fatalError()
+      }
+     for cafe in dictionaryUnwrapped
+     {
+      print(cafe)
+      let cafeObject = Cafe(fromCafeDictionary: cafe)
+      self.cafeAuRait.append(cafeObject)
+      }
+      print (self.cafeAuRait)
+      }
     task.resume()
   }
   

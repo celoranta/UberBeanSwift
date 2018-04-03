@@ -15,21 +15,21 @@ class Cafe: NSObject {
   let businessName: String
   let coordinates: CLLocationCoordinate2D
   let businessImage: String
-  let yelpRating: String
+  let yelpRating: Double
   
-  init(fromCafeDictionary dict: NSDictionary)
+  init(fromCafeDictionary dict: [String:Any])
   {
     print(dict)
-    let JsonCoordinates = dict.value(forKey: "coordinates") as! [String:Double]
+    let JsonCoordinates = dict["coordinates"] as! [String:Double]
     let JsonLatitude = JsonCoordinates["latitude"]
     let JsonLongitiude = JsonCoordinates["longitude"]
     let wrappedLatitude = CLLocationDegrees.init(JsonLatitude!)
     let wrappedLongitude = CLLocationDegrees.init(JsonLongitiude!)
     coordinates = CLLocationCoordinate2D.init(latitude: wrappedLatitude,
                                              longitude: wrappedLongitude)
-    businessName = dict.value(forKey: "name") as! String
+    businessName = dict["name"] as! String
     businessImage = dict["image_url"] as! String
-    yelpRating = dict["rating"] as! String
+    yelpRating = dict["rating"] as! Double
   }
 }
 
