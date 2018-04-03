@@ -12,9 +12,9 @@ import CoreLocation
 class NetworkManager: NSObject {
   
   var cafeAuRait: [Cafe] = []
-
   
-  func updateCafeQueryResults(location: CLLocationCoordinate2D)
+  
+  func updateCafeQueryResults(location: CLLocationCoordinate2D, plottingObjectDestination: @escaping ([Cafe])-> Void)
   {
     let latitude:Double = (Double)(location.latitude)
     let longitude:Double = (Double)(location.longitude)
@@ -29,31 +29,28 @@ class NetworkManager: NSObject {
         self.handleClientError(error)
         return
       }
-        let data = data
-          //temporarily force unwrapping data
-       if let string = String(data: data!, encoding: .utf8)
-       {
-        print(string)
-      }
-        //temporary fatal guard ... to be error handled
+      let data = data
+      //temporary fatal guard ... to be error handled
       guard let jsonUnwrapped = try? JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any]
-      else{
-        fatalError()
-      }
-
-      guard let dictionaryUnwrapped = try? jsonUnwrapped!["businesses"] as! [[String:Any]]
         else{
-       //   temporary fatal guard
           fatalError()
       }
-     for cafe in dictionaryUnwrapped
-     {
-      print(cafe)
-      let cafeObject = Cafe(fromCafeDictionary: cafe)
-      self.cafeAuRait.append(cafeObject)
+      
+      guard let dictionaryUnwrapped = try? jsonUnwrapped!["businesses"] as! [[String:Any]]
+        else{
+          //   temporary fatal guard
+          fatalError()
       }
-      print (self.cafeAuRait)
+      for cafe in dictionaryUnwrapped
+      {
+        print(cafe)
+        let cafeObject = Cafe(fromCafeDictionary: cafe)
+        self.cafeAuRait.append(cafeObject)
       }
+      DispatchQueue.main.async {
+      plottingObjectDestination(self.cafeAuRait)
+      }
+    }
     task.resume()
   }
   

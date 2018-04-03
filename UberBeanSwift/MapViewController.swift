@@ -17,16 +17,13 @@ var networkManager: NetworkManager!
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
   @IBOutlet weak var mapView: MKMapView!
   
-  
   override func viewDidLoad() {
     super.viewDidLoad()
 
     networkManager = NetworkManager()
-    
     userLocationManager.requestWhenInUseAuthorization()
     userLocationManager.delegate = self
     userLocationManager.requestLocation()
-    
     mapView.showsUserLocation = true
     mapView.delegate = self
   }
@@ -51,14 +48,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     let spanDegreesHorizontal = 0.018
     span.latitudeDelta = spanDegreesHorizontal
     span.longitudeDelta = spanDegreesVertical
-    
     var region = MKCoordinateRegion()
     region.center = location
     region.span = span
     
     mapView.region = region
     view.layoutSubviews()
-    networkManager.updateCafeQueryResults(location: location)
+    networkManager.updateCafeQueryResults(location: location) { (cafes) in
+      self.mapView.addAnnotations(cafes)
+    }
   }
   
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error){
@@ -68,5 +66,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
+  }
+  
+  func plotCafes(cafes: [Cafe])
+  {
+  self.mapView.addAnnotations(cafes)
+  // view.layoutSubviews()
   }
 }

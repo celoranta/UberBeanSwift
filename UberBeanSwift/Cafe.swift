@@ -10,10 +10,10 @@ import UIKit
 import CoreLocation
 import MapKit
 
-class Cafe: NSObject {
+class Cafe: NSObject, MKAnnotation {
 
-  let businessName: String
-  let coordinates: CLLocationCoordinate2D
+  let title: String?
+  let coordinate: CLLocationCoordinate2D
   let businessImage: String
   let yelpRating: Double
   
@@ -25,9 +25,9 @@ class Cafe: NSObject {
     let JsonLongitiude = JsonCoordinates["longitude"]
     let wrappedLatitude = CLLocationDegrees.init(JsonLatitude!)
     let wrappedLongitude = CLLocationDegrees.init(JsonLongitiude!)
-    coordinates = CLLocationCoordinate2D.init(latitude: wrappedLatitude,
+    coordinate = CLLocationCoordinate2D.init(latitude: wrappedLatitude,
                                              longitude: wrappedLongitude)
-    businessName = dict["name"] as! String
+    title = dict["name"] as? String
     businessImage = dict["image_url"] as! String
     yelpRating = dict["rating"] as! Double
   }
